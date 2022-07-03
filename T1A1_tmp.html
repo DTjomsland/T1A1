@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>T1A1.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="t1a1-workbook">T1A1-Workbook</h1>
+<hr>
+<h2 id="question-1-identify-and-explain-common-and-important-components-and-concepts-of-web-development-markup-languages">Question 1: Identify and explain common and important components and concepts of web development markup languages.</h2>
+<hr>
+<p>Markup languages are computer languages that utilize tags to define the structure of a document.  Markup languages contain standard words which make them easily readable by humans. Once rendered, markup language components are no longer visible by the human eye.</p>
+<p> </p>
+<h3 id="common-components">Common Components:</h3>
+<p>Tags are the main component of a markup language and are what distinguish markup languages from normal text.  Tags are responsible for providing extra information about the text/content within them by giving instructions on how the content should be rendered and the overall importance of the content.  Tags are represented by angle brackets surrounding the term that is used to specify content. For example, in HTML, the main heading of a web page would be specified by the use of an &lt;h1&gt; tag. This tag is interpreted and rendered as larger text, as well as providing search engines with important information regarding the content of the web page.</p>
+<p> </p>
+<h3 id="common-markup-languages-used-for-web-development">Common Markup Languages Used for Web Development:</h3>
+<ul>
+<li>
+<p>HTML (Hypertext Markup Language) - A forgiving markup language used to create documents shared over the internet.</p>
+</li>
+<li>
+<p>XHTML (eXtensible Hypertext Markup Language) - A hybrid language incorporating both XML and HTML syntax rules.</p>
+</li>
+<li>
+<p>XML (eXtensible Markup Language) - A simple language used for representing structured information.  Often times used in tandem with HTML in web development.</p>
+</li>
+</ul>
+<p> </p>
+<p> </p>
+<h2 id="question-2-define-the-features-of-the-following-technologies-that-are-essential-in-terms-of-the-development-of-the-internet">Question 2: Define the features of the following technologies that are essential in terms of the development of the internet:</h2>
+<hr>
+<h3 id="packets">Packets</h3>
+<p>Packets are small segments of larger files used to send information across the internet.  The size of packets vary depending on network type, with sizes ranging from 1.5KB (Ethernet) to 64KB (IP Payloads). Packets consist of 3 major parts which are the header, the payload, and the trailer. The header consists of instructions about about the packet.  This includes information such as its origin, its destination, its size, etc. The payload is the data that the packet is delivering.  This is the information that gets combined with the other payloads to form the larger file. The trailer is the part of the packet that informs the recipient that the packet has ended. The trailer often contains instructions for checking if the packet has arrived intact.  It does this by comparing the amount of information in the sent packet to that of its origin.</p>
+<p><em>Packets have contributed to the development of the internet by providing a way to send large amounts of information with out creating network crippling congestion. If entire files were sent at a time, pathways on the internet would be taken up until the file is finished sending.  By cutting the information down into packets, it allows for information to flow smoothly across the internet.</em></p>
+<p> </p>
+<h3 id="ip-addresses-ipv4-and-ipv6">IP addresses (IPv4 and IPv6)</h3>
+<p>Internet Protocol addresses are are identifiers that are given to hardware devices on a network.  They allow the transfer of data over both the internet and local network by signifying destinations so  devices know where to send information. IP addresses consist strings of numbers separated by periods. IP addresses consist of four number groupings that are separated internally by periods. Between each period is a number that ranges from 0 to 255.  An example of a typical IP address is the following: 192.168.1.1.</p>
+<p>There are two main Internet Protocol versions used today which are IPv4 and IPv6.</p>
+<ul>
+<li>IPv4 - The version that was initially used on the U.S. Advanced Research Projects Agency Network (ARPANET).  It is 32-bit address that is still the most widely used over the modern internet.</li>
+<li>IPv6 - The newest version of Internet Protocol.  It was deployed in 1999 to combat the possibility of the demand for IP address exceeding the supply.  It does this by using a 128-bit address which significantly increases the amount of possible addresses.</li>
+</ul>
+<p><em>IP Addresses contributed to the creation of the internet by allowing devices to send information precisely over the internet.  Without an address system that is capable of trillions of addresses, duplicate addresses could be made over time which would cause complications.</em></p>
+<p> </p>
+<h3 id="routers-and-routing">Routers and Routing</h3>
+<p>Routing is the process of selecting a path through networks/internet.  When sending packets across networks/internet, routes need to be specified so that the information arrives precisely. These routes are selected by hardware known as routers. Routers read the packets destination from the header of the packet, and send it along a route towards its destination.  Often times, packets are sent through many routers before reaching their destination. Each one of these routers reads the destination information, then sends the packet on a course toward a router that is closer to it's destination.</p>
+<p>Routers range from those found in households and local networks, to extremely powerful routers which are responsible for routing tons of information being sent across the internet daily.</p>
+<p>The two main categories of routing are static and dynamic routing.</p>
+<ul>
+<li>Static: Routes are user identified and, as the name implies, do not change unless changed manually. Static routing is often utilized for small networks due to it providing more security.  They are often faster due to addresses remaining constant which negate the need for complex algorithms.</li>
+<li>Dynamic: Routing tables are changed depending on the topology of the network. It uses complex routing algorithms to to ensure information makes it to its intended destination over the ever-changing internet.</li>
+</ul>
+<p><em>Routers and routing contributed to the creation of the internet by creating a web of inter connectivity. They allow for packets to travel along different paths and to change paths based on changes in topology or congestion. Routers are what facilitate the movement of packets precisely across the internet.</em></p>
+<p> </p>
+<h3 id="domains-and-dns">Domains and DNS</h3>
+<p>A domain name is a human readable identifier for a network domain or IP Address.  an example of this would be www.netflix.com.  Domain names are translated into IP addresses by Domain Name Systems (DNS).  Domain Name Systems create DNS records which map a URL to a IP address which are stored on DNS servers.  DNS services are often provided by web hosting platforms.</p>
+<p>Domains and DNS contributed to the creation of the internet by making the process by which users search websites easier and more streamlined. If Domain Name Systems were absent, users would have to remember complex IP Addresses in order to receive information over the internet.  Domain Name Systems allow the user to easily search for what they are looking for through the use of easily readable domain names.</p>
+<p> </p>
+<p> </p>
+<h2 id="question-3-define-the-features-of-the-following-technologies-that-are-essential-in-terms-of-the-development-of-the-internet">Question 3: Define the features of the following technologies that are essential in terms of the development of the internet:</h2>
+<hr>
+<h3 id="tcp"><strong>TCP</strong></h3>
+<p><strong>Transmission Control Protocol (TCP)</strong> works together with Internet Protocol(IP).  IP is responsible for obtaining the address and TCP is responsible for the delivery of data after the destination has been identified. TCP segments data into packets which are numbered and delivered across the net. Once delivered, TCP is also responsible for ensuring that all of the data made it to the intended destination.</p>
+<p><em>TCP contributed to the creation of the internet by allowing large amounts of data to be sent in smaller, more manageable, packets. It also ensures data has been sent in its entirety, which is immensely important for the internet to be a reliable means of file transfer.</em></p>
+<p> </p>
+<h3 id="http-and-https"><strong>HTTP and HTTPS</strong></h3>
+<p><strong>Hypertext Transfer Protocol</strong> is a protocol used for transferring data over the internet.  The most common use is in the transmission of HTML files from a server to a web browser. HTTP uses a simple request and response method in which a browser makes a request to the server for information, and waits for a response from the server.  This happens every time a search is made or a link is clicked on a web browser.</p>
+<p><strong>Hypertext Transfer Protocol Secure (HTTPS)</strong> is a more modern and secure version of HTTP.  This extra security is added through the use of a protocol to encrypt communications called Transport Layer Security (TLS).  TLS secures communications through the use of certificates which encrypt the data that is being transferred and authenticates the users/parties. TLS also verifies that none of the information that has been transferred has be modified in any way before reaching its destination.</p>
+<p><em>HTTP/HTTPS contributed to the creation of the internet by allowing communication between a web browser and a website server. These are responsible for allowing requests and responses to made over the internet.  HTTPS has allowed for the internet to be a much more secure, which is incredibly important given that large amounts of sensitive data is transferred on the modern internet (credit card information/passwords).</em></p>
+<p> </p>
+<h3 id="web-browsers-requests-rendering-and-developer-tools"><strong>Web browsers (requests, rendering and developer tools)</strong></h3>
+<p>A browser is an application that allows the user to access the internet with a device such as a desktop computer, tablet, laptop, and mobile phone.  A browser <strong>requests</strong> and retrieves information from a specific server and translates it so that the information is easily readable by the user. This transfer is done through the use of Hypertext Transfer Protocol which provides a set of rules for how data is transferred across the internet. Once the requested information is received, the browser engine <strong>renders</strong> the information by converting the bytes into text and graphics.  The information that is rendered is often in the form of HTML that is styled by CSS and given interactive elements through the use of JavaScript.  The files that are received by the web browser can be inspected through the use of <strong>developer tools.</strong> Developer tools are an incredibly powerful suite that allows the user to view and manipulate the documents that are currently being read by the browser.  They also provide useful information regarding the performance of a website, as well as security and network information.</p>
+<p><em>Web browsers contributed to the creation of the internet by providing a user friendly way for everyone to access information across the web.  They allow for the search of information through HTTP/HTTPS that is both human friendly and secure, while also providing useful tools for those responsible for developing internet websites and applications.</em>
+ </p>
+<p> </p>
+<h2 id="question-4-identify-three-data-structures-used-in-the-python-programming-language-and-explain-the-reasons-for-using-each">Question 4: Identify THREE data structures used in the Python programming language and explain the reasons for using each.</h2>
+<hr>
+<p><em>Three common data structures used in the Python Programming Language are lists, sets, and dictionaries.</em></p>
+<h3 id="lists"><strong>Lists</strong></h3>
+<p>Lists in python are ordered collections of data that are stored in a single variable which addressed using an index.  The index of a list begins at 0 and moves positively in increments of one, meaning the first item in the list has an index value of 0.  Lists are represented by the use of square brackets on either side of data, with each individual item being separated by a comma. List items can consist of different data types, including integers, strings and even Booleans. They also can be modified after their creation which makes them an incredibly powerful tool for storing data.</p>
+<p>List Example: <code>animal_list = [dogs, cats, birds, ferrets]</code></p>
+<p><em>Lists are incredibly useful in situations where order, modification, and storage of multiple data types is necessary.</em></p>
+<p> </p>
+<h3 id="tuples"><strong>Tuples</strong></h3>
+<p>Tuples in python are ordered collections of data that are stored in a single variable. Like lists, tuples can contain duplicate values. The index of a Tuple begins at 0 and moves positively in increments of one, meaning the first item in the tuple has an index value of 0. Tuples are represented by the use of round brackets on either side of data, with each individual item being separated by a comma. Tuple items can consist of different data types, including integers, strings and even Booleans. Unlike lists, tuple items cannot be modified or removed after the tuple has been created.</p>
+<p>Tuple Example: <code>animal_tuple = (dogs, cats, birds, ferrets)</code></p>
+<p><em>Tuples are incredibly useful when the items inside a data structure do not need to be changed.  Tuples should be used when the information that is going into a data structure is known previously. Also, since tuples are immutable, it allows the possibility for them to be used as keys to dictionaries.</em></p>
+<p> </p>
+<h3 id="sets"><strong>Sets</strong></h3>
+<p>Sets in python are unordered collections of data that are stored in a single variable. Unlike lists and tuples, sets cannot contain duplicate items.  Sets are represented by the use of curly brackets on either side of data, with each individual item being separated by a comma. Set items can consist of different data types, including integers, strings and even Booleans. Set items cannot be modified after the set has been created, but items can be added or removed from the set.</p>
+<p>Set Example: <code>animal_set = {dogs, cats, birds, ferrets}</code></p>
+<p><em>Sets are very useful when the data being stored does not need to be ordered and where duplicates are unwanted.  They are also great for weeding out duplicate items in a list. Sets are typically faster in situations where membership is the only thing being checked.</em></p>
+<p> </p>
+<p> </p>
+<h2 id="question-5-describe-the-features-of-interpreters-and-compilers-and-how-they-are-different">Question 5: Describe the features of interpreters and compilers and how they are different.</h2>
+<hr>
+<h3 id="interpreters">Interpreters</h3>
+<p>An interpreter is a computer program that translates code into machine code instruction by instruction. Since it is translating each instruction individually, it executes each instruction individually as well.</p>
+<h3 id="compilers">Compilers</h3>
+<p>A compiler is a computer program that translates code into machine code, but it does so by translating the entire program all at once. The machine code is saved after it is compiled so that it can be executed quickly after compilation is completed.</p>
+<p><em>Interpreters and compilers have many differences that make them each useful for different situations. Not only do interpreters read and execute code instruction by instruction, but they also throw errors for individual lines if any exist.  This makes them a useful tool for troubleshooting code. Unlike interpreters, compilers translate and execute entire programs at once. This can make troubleshooting code that has been compiled tricky to navigate because bugs are reported after the entire program has been compiled as opposed to individual instructions. Interpreters create source code every time they run, they are much slower at executing programs than compilers, which store the machine code separately from the high level code.</em></p>
+<p> </p>
+<p> </p>
+<h2 id="question-6-identify-two-commonly-used-programming-languages-and-explain-the-benefits-and-drawbacks-of-each">Question 6: Identify TWO commonly used programming languages and explain the benefits and drawbacks of each.</h2>
+<hr>
+<p><em>Two commonly used programming languages are Python and JavaScript.</em></p>
+<h2 id="python">Python</h2>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Very easy to learn and read due to it being similar to reading english.</li>
+<li>High speed development.</li>
+<li>Flexible and extensible.</li>
+<li>Large and passionate community.</li>
+<li>Huge collection of libraries.</li>
+<li>Highly scalable: large companies use Python such as Instagram.</li>
+<li>Free and open source.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Is on the slower side due to it being an interpreted programming language.</li>
+<li>Must go through extra lengths to ensure code is secure.</li>
+<li>High resource usage.</li>
+<li>Not as mobile friendly as other languages.</li>
+</ul>
+<h2 id="javascript">Javascript</h2>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Learner friendly syntax make sit easy to pick up.</li>
+<li>Immensely popular with endless resources to draw upon.</li>
+<li>Extremely versatile in web development. Is used in both the front-end and the back-end which allows for rapid development.</li>
+<li>Supported by all modern browsers.</li>
+<li>Large and passionate community.</li>
+<li>Extensive collection of libraries.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Security can be an issue because the code is executed on the users device. This can be maliciously exploited.</li>
+<li>Is sometimes interpreted differently depending on the browser that is used.</li>
+<li>Since code is downloaded to a users' browser, it can be copied and taken for use elsewhere.</li>
+</ul>
+<p> </p>
+<p> </p>
+<h2 id="question-7-identify-two-ethical-issues-from-the-areas-below-and-discuss-the-extent-to-which-an-it-professional-is-ethically-responsible-in-terms-of-the-issue">Question 7: Identify TWO ethical issues from the areas below and discuss the extent to which an IT professional is ethically responsible in terms of the issue.</h2>
+<p>List of topics containing ethical issues:</p>
+<ul>
+<li>access to a user’s personal information (medical, family, financial, personal attributes such as sexuality, religion, or beliefs)</li>
+<li>intellectual property, copyright, and acknowledgement.</li>
+<li>criminal acts such as theft, fraud, trafficking and distribution of prohibited substances, terrorism</li>
+<li>GPS tracking data and other types of metadata, MAC addresses, hardware fingerprints</li>
+<li>freedom of thought, conscience, speech and the media</li>
+<li>aggressive sales and marketing practices designed to mislead and deceive consumers</li>
+<li>trading of shares on the stock exchange OR crypto-currencies</li>
+</ul>
+<p>For each ethical issue identify a source of legal information relating to the ethical issue and discuss whether the law is helpful in assisting a developer to act in an ethical way. (Word count guide: 200 words max)</p>
+<p>Conduct research into a case study of ONE of the ethical issues you have chosen discuss how an ethical IT professional should respond to the case study and how they might mitigate or prevent ethical breaches. (Word count guide: 400 - 600 words)</p>
+<hr>
+<p> </p>
+<h3 id="intellectual-property-copyright-and-acknowledgement">Intellectual property, copyright, and acknowledgement.</h3>
+<p>Copyright within Australia is governed by the legislation within the “Copyright Act 1968’ and gives the owners of original works protection. The Australian Government has a website (‘https://www.ipaustralia.gov.au’) dedicated to providing legal information pertaining to intellectual property, copyright and acknowledgement of intellectual property. This website has a sleuth of information that developers can access to understand the laws within Australia. It enables developers to ensure they are acting ethically and honouring original ownership of information and content. The laws ensure that when developers are coding, that they acknowledge and are legally allowed to reproduce content that is considered intellectual property or is protected by copyright law. These legislations push developers to create an environment of continuous improvement and creativity.</p>
+<p>https://www.ipaustralia.gov.au/</p>
+<p>https://www.legislation.gov.au/Details/C2017C00180</p>
+<p> </p>
+<h3 id="aggressive-sales-and-marketing-practices-designed-to-mislead-and-deceive-consumers">Aggressive sales and marketing practices designed to mislead and deceive consumers</h3>
+<p>Australian Consumer Law (‘Competition and Consumer Act 2010’) legislates that it is illegal to partake in practices that mislead or deceive consumers or other businesses. The ACCC (Australian Competition and Consumer Commission) is the governing body that regulates and enforces the ‘Competition and Consumer Act 2010’ to ensure the interests and safety of consumers are protected. This is an incredibly important law for developers as it guides how content is presented and created. It encourages the developer to act with intent and to raise any concerns of deceptive or misleading content that would have direct impact on the intended user. It is a developer’s duty of care and responsibility to deliver products as advertised and failure to do so will expose the developer to detrimental legal proceedings. It provides an ethical framework for developers reside within and encourages ethical behaviors to protect the consumer.</p>
+<p>https://www.legislation.gov.au/Details/C2013C00620/Html/Volume_3#_Toc368657554</p>
+<p>https://www.accc.gov.au/publications/advertising-selling/advertising-and-selling-guide/avoid-misleading-or-deceptive-claims-or-conduct/misleading-or-deceptive-conduct</p>
+<p> </p>
+<h3 id="case-study">Case Study</h3>
+<p>The case study discussed below pertains to the 2010 Federal Court case brought forward by the ACCC alleging Optus breached the ‘Competition and Consumer Act 2010’ (formally known as the ‘Trade Practices Act 1974’). It is being discussed in relation to the ethical issues surrounding aggressive sales and marketing practices designed to mislead and deceive consumers.
+In April and August of 2010, Optus launched and advertised their “THINK BIGGER and “SUPERSONIC” broadband campaigns. These campaigns advertised broadband plans with data allowances for peak (12pm-12am) and off-peak (12am-12pm) times. What was not clearly stated and what the ACCC (Australian Competition and Consumer Commission) alleged is that Optus did not sufficiently disclose that once the “peak” data was used the service speed would be limited to 64kbps and any unused “off-peak” data would not be accessible at the broadband plan speed. The speed limit of 64kbps rendered most websites unusable. Optus countered that they had not breached consumer law as the customers were able to have their “misapprehensions” rectified via Optus services when they were signing up for the plan. Optus was found by the Federal Court to be in breach of the Act and ordered to pay $3.61 million in penalties.</p>
+<p>IT professionals can learn from this case study and be aware that even though information is not “hidden” or can be retrieved by consumers, if it is presented in a way that that requires complexity to obtain or through disclaimers it can be considered misleading. The broadband data plans advertised by Optus were technically the theoretical “maximum” however it is very easy to see how the advertisements by Optus misled the consumer to believe that they would receive the entirety of the plan data. At the centre of this case is the “lack of transparency” in the advertisements. One way IT professionals can mitigate this sort of breach would be to ensure that critical information (such as the limitations of the plans Optus were advertising) are fully accessible, and visible during campaigning activities. The ACCC plays a very large part in protecting consumers from misleading and deceiving practices and has a very extensive repository of information that IT professionals can access. Another very important way IT professionals can mitigate ethical breaches is to speak up if they feel chronic unease with a situation or do not believe the company or business is acting ethically. IT professionals are required, by law, to follow the legislation in the ‘Competition and Consumer Act 2010’ and are obligated to maintain the standards irrespective of company/business direction.</p>
+<p>https://www.accc.gov.au/media-release/full-federal-court-orders-optus-to-pay-36-million-penalty</p>
+<p>http://www.austlii.edu.au/cgi-bin/sinodisp/au/cases/cth/FCAFC/2012/20.html?stem=0&amp;synonyms=0&amp;query=full%20federal%20court%20optus%20commission%202012</p>
+<p>https://www.accc.gov.au/media-release/optus-think-bigger-internet-plans-declared-tricky</p>
+<p> </p>
+<p> </p>
+<h2 id="question-8-explain-control-flow-using-examples-from-the-python-programming-language">Question 8: Explain control flow, using examples from the Python programming language</h2>
+<hr>
+<p><em>Control flow is the order that a computer executes statements in a script. In Python,  control flow is regulated by conditional statements, loops, or functions.  The default control flow of python is sequential, meaning the code will run from the first statement to the last.</em></p>
+<h3 id="default-control-flow">Default Control Flow:</h3>
+<pre><code>possible_points = 103.5
+points_missed = 0.0
+my_t1a1_score = possible_points - points_missed
+print(f&quot;Your score is: {my_t1a1_score}&quot;)
+</code></pre>
+<p>The example above is executed sequentially from beginning to end which represents the default Python control flow.</p>
+<h3 id="conditional-statements">Conditional Statements</h3>
+<pre><code>t1a1_score = 103.5
+if t1a1_score == 103.5:
+    print(&quot;Heck ya! You got full credit!&quot;)
+else:
+    print(&quot;I made a mistake, there's no way you didn't get full credit!&quot;)
+</code></pre>
+<p>The example above uses an if/else statement to regulate control flow.  If the condition is met, the code will stop being read and <code>print(&quot;Heck ya! You got full credit!&quot;)</code> will be executed. If the condition is not met, the else will be read and <code>print(&quot;I made a mistake, there's no way you didn't get full credit!&quot;)</code> will be read.</p>
+<h3 id="loops">Loops</h3>
+<pre><code>t1a1_score = 100.0
+while t1a1_score &lt; 103.5:
+    t1a1_score = t1a1_score + 0.5
+print(f&quot;This while loop gave you the score you deserve! Score: {t1a1_score}&quot;)
+</code></pre>
+<p>The example above uses a while loop to regulate control flow. Instead of reading sequentially, a while loop executes the same statement repeatedly until the condition is satisfied.  In this example, it added <code>0.5</code> to the <code>t1a1_score</code> until full credit was given, then it proceeded to execute the function after which is <code>print(f&quot;This while loop gave you the score you deserve! Score: {t1a1_score}&quot;).</code>
+ </p>
+<p> </p>
+<h2 id="question-9-explain-the-difference-between-type-coercion-and-type-conversion-are-either-of-these-used-in-python">Question 9: 	Explain the difference between type coercion and type conversion. Are either of these used in Python?</h2>
+<hr>
+<p><strong>Type coercion</strong> (also known as Implicit Type Conversion) is the conversion of values from one data type to another that occurs automatically.  Languages such a JavaScript and Python with automatically convert data types to what matches the intended result.  For instance, if you add an integer and a float together, python will automatically convert the integer into a float to complete the instruction. Therefore, the result will be a float.</p>
+<p><strong>Type conversion</strong> is the explicit conversion of values from one data type to another.  Unlike type coercion, type conversion is manually done using built in functions of the programming language being used. For example, in Python, type conversion can be seen when using built in functions such as int(), float(), and str(), which manually convert the data type of the data that is passed through the function.</p>
+<p><em>Both type coercion and type conversion are used in Python, as seen above.</em></p>
+<p> </p>
+<p> </p>
+<h2 id="question-10-explain-data-types-using-examples">Question 10: Explain data types, using examples</h2>
+<hr>
+<p><em><strong>Data types</strong> are classifications that tell the compiler or interpreter how the data is intended to be used. Data types vary depending on programming language.  The built-in data types for Python consist of the following classes: text, numeric, sequence, mapping, set, Boolean, binary, and none type. Below are definitions and examples of a few specific data types to help further explain.</em></p>
+<p> </p>
+<h3 id="text-data-types"><strong>Text Data Types</strong></h3>
+<p><strong>String:</strong> A sequence of characters (letters, numbers, punctuation) that are enclosed by single or double quotation marks.</p>
+<p>Examples:</p>
+<pre><code>my_name = 'David'  
+
+t1a1_grade = 'Full credit! Great work, dude!'   
+</code></pre>
+<p> </p>
+<h3 id="numeric-data-types"><strong>Numeric Data Types</strong></h3>
+<p><strong>Integer:</strong> A whole number without decimals that can be positive or negative.</p>
+<p>Examples:</p>
+<pre><code>my_age = 32
+
+t1a1_grade = 103
+</code></pre>
+<p> </p>
+<p><strong>Float:</strong> A number with one or more decimals that can be positive or negative.</p>
+<p>Examples:</p>
+<pre><code>my_age = 31.5
+
+t1a1_grade = 103.5
+</code></pre>
+<p> </p>
+<h3 id="boolean-data-type"><strong>Boolean Data Type</strong></h3>
+<p><strong>Boolean:</strong> Represent values True or False.</p>
+<p>Example:</p>
+<pre><code>highest_grade = True
+
+if highest_grade:
+
+    print(&quot;Good job David! You are the Python master.&quot;)
+
+else:
+    print(&quot;I must've graded incorrectly, forgive me!&quot;)
+</code></pre>
+<p> </p>
+<p> </p>
+<h2 id="question-11-heres-the-problem-there-is-a-restaurant-serving-a-variety-of-food-the-customers-want-to-be-able-to-buy-food-of-their-choice-all-the-staff-just-quit-how-can-you-build-an-app-to-replace-them">Question 11: Here’s the problem: “There is a restaurant serving a variety of food. The customers want to be able to buy food of their choice. All the staff just quit, how can you build an app to replace them?”</h2>
+<p>Identify the classes you would use to solve the problem</p>
+<p>Write a short explanation of why you would use the classes you have identified</p>
+<hr>
+<h3 id="restaurant-information-class">Restaurant Information Class</h3>
+<p><em>This class provides general useful information pertaining to the restaurant.  Below are examples of information that can be included in this class:</em></p>
+<ul>
+<li>Restaurant name</li>
+<li>Restaurant address</li>
+<li>Restaurant hours</li>
+<li>Contact information</li>
+</ul>
+<h3 id="menu-class">Menu Class</h3>
+<p><em>This class stores information regarding general menu information.  It will provide a way for the restaurant to distinguish between different menus (breakfast/lunch/dinner) and their availability throughout the day.  It also enables the customer to easily navigate through all available items. Below are examples of information that can be included in this class:</em></p>
+<ul>
+<li>Menu Name (Breakfast/Lunch/Dinner)</li>
+<li>Specials (dependent on day of week)</li>
+<li>Menus for those with dietary restrictions</li>
+<li>Drink menu</li>
+</ul>
+<h3 id="menu-item-class">Menu Item Class</h3>
+<p><em>This class stores information regarding individual items and their attributes. This enables the customer to few specifics on ingredients and preparation so they know exactly what they are ordering. This class can also be used to store information on item availability. Below are examples of information that can be included in this class:</em></p>
+<ul>
+<li>Item name</li>
+<li>Item description</li>
+<li>Dietary and allergy information</li>
+<li>Availability</li>
+<li>Price</li>
+</ul>
+<h3 id="payment-class">Payment Class</h3>
+<p><em>This class stores information regarding payment details.  This enables the customer to review their order and provide payment based on their chosen method. This also enables the user to input any special requests and provide collection details. Below are examples of information that can be included in this class:</em></p>
+<ul>
+<li>Price breakdown</li>
+<li>Total price</li>
+<li>Order review</li>
+<li>Payment type</li>
+<li>Customer special requests</li>
+<li>Delivery address</li>
+<li>Pickup/Delivery/Dine-in</li>
+</ul>
+<h3 id="order-class">Order Class</h3>
+<p><em>This class stores information regarding the order.  This enables the customer to refer back to the order at any time with a real time overview of the order status.  Ti also allows the customer to refer back to the order at a future date so they can see what they have ordered in the past. Below are examples of information that can be included in this class:</em></p>
+<ul>
+<li>Pickup/Delivery/Dine-in</li>
+<li>Delivery address</li>
+<li>Order ID</li>
+<li>Order completion time</li>
+<li>Order completion date</li>
+<li>Customer name</li>
+<li>Total cost</li>
+<li>List of ordered items</li>
+<li>Customer special requests
+ </li>
+</ul>
+<p> </p>
+<h2 id="question-12-identify-and-explain-the-error-in-the-code-snippet-below-that-is-preventing-correct-execution-of-the-program">Question 12: Identify and explain the error in the code snippet below that is preventing correct execution of the program</h2>
+<hr>
+<pre><code>celsius = input()
+
+fahrenheit = (celsius*9/5)+32
+
+print(f&quot;The result is: {fahrenheit}.&quot;)
+</code></pre>
+<p>The error in the code stems from the first line of the program.  When inputs are given in Python, they default to strings.  In it's current iteration, the program is attempting to multiply a string (the variable <code>celsius</code>), by 9/5.  These two data types are incompatible, so Python will throw an error.  In order to correct this, one must use type conversion to convert the string into a numeric data type before it is used in the equation.  Below is a correct way to fix the error:</p>
+<pre><code>celsius = input()
+
+fahrenheit = (float(celsius)*9/5)+32
+
+print(f&quot;The result is: {fahrenheit}.&quot;)
+</code></pre>
+<p>As seen above, the float() function is used to convert the variable <code>celsius</code> into a float before it is used in the equation.</p>
+<p> </p>
+<p> </p>
+<h2 id="question-13-the-code-snippet-below-looks-for-the-first-two-elements-that-are-out-of-order-and-swaps-them-however-it-is-not-producing-the-correct-results-rewrite-the-code-so-that-it-works-correctly">Question 13: The code snippet below looks for the first two elements that are out of order and swaps them; however, it is not producing the correct results. Rewrite the code so that it works correctly.</h2>
+<hr>
+<h3 id="initial-code">Initial code:</h3>
+<pre><code>arr = [5, 22, 29, 39, 19, 51, 78, 96, 84]
+i = 0
+while (i&lt;arr.len() -1) and (arr[i] &lt; arr[i] &lt; arr [i+1]):
+    i += i
+print(i)
+    arr[i] = arr[i+1]
+    arr[i+1] = arr[i]
+</code></pre>
+<h3 id="after-correction">After correction:</h3>
+<pre><code>arr = [5, 22, 29, 39, 19, 51, 78, 96, 84]
+i = 0
+while i &lt; len(arr) - 1 and arr[i] &lt; arr[i+1]:
+    i += 1   
+else:
+    arr[i], arr[i+1] = arr[i+1], arr[i]
+</code></pre>
+<h3 id="result">Result:</h3>
+<pre><code>[5, 22, 29, 19, 39, 51, 78, 96, 84]
+</code></pre>
+<p> </p>
+<p> </p>
+<h2 id="question-14-demonstrate-your-algorithmic-thinking-through-completing-the-following-two-tasks-in-order">Question 14: Demonstrate your algorithmic thinking through completing the following two tasks, in order:</h2>
+<ol>
+<li>Create a flowchart to outline the steps for listing all prime numbers between 1 and 100 (inclusive). Your flowchart should make use of standard conventions for flowcharts to indicate processes, tasks, actions, or operations</li>
+<li>Write pseudocode for the process outlined in your flowchart</li>
+</ol>
+<hr>
+<h3 id="flowchart">Flowchart:</h3>
+<p><img src="file:///home/david/projects/T1A2_Workbook/flowchart.png" alt="Flow Chart"></p>
+<h3 id="pseudocode">Pseudocode:</h3>
+<p> </p>
+<p> </p>
+<h2 id="question-15-write-pseudocode-or-python-code-for-the-following-problem">Question 15: Write pseudocode OR Python code for the following problem:</h2>
+<p>You have access to two variables: raining (boolean) and temperature (integer). If it’s raining and the temperature is less than 15 degrees, print to the screen “It’s wet and cold”, if it is less than 15 but not raining print “It’s not raining but cold”. If it’s greater than or equal to 15 but not raining print “It’s warm but not raining”, and otherwise tell them “It’s warm and raining”.</p>
+<hr>
+<pre><code>raining = True
+temperature = 14
+if raining and temperature &lt; 15:
+    print(&quot;It’s wet and cold&quot;)
+elif not raining and temperature &lt; 15:
+    print(&quot;It’s not raining but cold&quot;)
+elif not raining and temperature &gt;= 15:
+    print(&quot;It’s warm but not raining&quot;)
+else:
+    print(&quot;It’s warm and raining&quot;)
+</code></pre>
+<p> </p>
+<p> </p>
+<h2 id="question-16-acme-corporation-are-hiring-a-new-junior-developer-as-part-of-their-hiring-criteria-theyve-created-a-%22coding-skill-score%22-based-on-the-specific-competencies-they-require-for-this-role-the-more-important-the-skill-is-for-acme-corp-the-more-points-it-contributes-to-the-%22coding-skill-score%22-the-skills-are-weighted-as-follows">Question 16: ACME Corporation are hiring a new junior developer, as part of their hiring criteria they've created a &quot;coding skill score&quot; based on the specific competencies they require for this role; the more important the skill is for ACME corp, the more points it contributes to the &quot;coding skill score&quot; The skills are weighted as follows:</h2>
+<ul>
+<li>Python (1)</li>
+<li>Ruby (2)</li>
+<li>Bash (4)</li>
+<li>Git (8)</li>
+<li>HTML (16)</li>
+<li>TDD (32)</li>
+<li>CSS (64)</li>
+<li>JavaScript (128)
+​
+Write a program that allows a user to input their skills and then tells them
+a) Their overall &quot;coding skill score&quot;
+b) Skills they may want to learn, and how much each one would improve their score</li>
+</ul>
+<hr>
+<h3 id="program">Program:</h3>
+<pre class="hljs"><code><div>def _get_skills(skills_dict):
+    print(&quot;Skill Options:&quot;)
+    print(list(skills_dict.keys()))
+    print(&quot;Type 'Done' when finished.&quot;)
+    user_input = input(&quot;Input one of your skills: &quot;)
+    while user_input != &quot;Done&quot;:
+        while user_input in skills_dict and user_input != &quot;Done&quot;:
+            skills_set.add(user_input)
+            user_input = input(&quot;Please enter another skill: &quot;)
+        while user_input not in skills_dict and user_input != &quot;Done&quot;:
+            user_input = input(&quot;Please enter a valid skill: &quot;)
+    if user_input == &quot;Done&quot;:
+        global new_dict
+        new_dict = dict((k, skills_dict[k]) for k in skills_set if k in skills_dict)
+        return new_dict
+
+def _skill_comparison():
+    global shared_items
+    shared_items = dict(skills_dict.items() - new_dict.items())
+    return shared_items
+
+skills_set = set()
+shared_items = dict()
+new_dict = dict()
+skills_dict = {
+    &quot;Python&quot;: 1,
+    &quot;Ruby&quot;: 2,
+    &quot;Bash&quot;: 4,
+    &quot;Git&quot;: 8,
+    &quot;HTML&quot;: 16,
+    &quot;TDD&quot;: 32,
+    &quot;CSS&quot;: 64,
+    &quot;JavaScript&quot;: 128
+    }
+
+def _main_function ():
+    _get_skills(skills_dict)
+    _skill_comparison()
+    print(f&quot;Your Coding Skill Score is: {sum(new_dict.values())}&quot;)
+    print(f&quot;Here are skills that you may want to learn and how much they will improve your score: {shared_items}&quot;)
+</div></code></pre>
+<h3 id="program-with-comments">Program with Comments:</h3>
+<pre class="hljs"><code><div># Retrieving skills from the user
+def _get_skills(skills_dict):
+    print(&quot;Skill Options:&quot;)
+    print(list(skills_dict.keys()))
+    print(&quot;Type 'Done' when finished.&quot;)
+    # Initial user input
+    user_input = input(&quot;Input one of your skills: &quot;)
+    # While skill entered isn't &quot;done&quot;
+    while user_input != &quot;Done&quot;:
+        # While skill entered is in the dictionary (new prompt)
+        while user_input in skills_dict and user_input != &quot;Done&quot;:
+            skills_set.add(user_input)
+            user_input = input(&quot;Please enter another skill: &quot;)
+        # While skill entered is not in the dictionary (new prompt) 
+        while user_input not in skills_dict and user_input != &quot;Done&quot;:
+            user_input = input(&quot;Please enter a valid skill: &quot;)
+    # If skill entered is &quot;Done&quot; (creates new dictionary with input items that match)
+    if user_input == &quot;Done&quot;:
+        global new_dict
+        new_dict = dict((k, skills_dict[k]) for k in skills_set if k in skills_dict)
+        return new_dict
+# Compares the user input dictionary with the old        
+def _skill_comparison():
+    global shared_items
+    # Creates a new dictionary with only items that were not entered
+    shared_items = dict(skills_dict.items() - new_dict.items())
+    return shared_items
+
+skills_set = set()
+shared_items = dict()
+new_dict = dict()
+skills_dict = {
+    &quot;Python&quot;: 1,
+    &quot;Ruby&quot;: 2,
+    &quot;Bash&quot;: 4,
+    &quot;Git&quot;: 8,
+    &quot;HTML&quot;: 16,
+    &quot;TDD&quot;: 32,
+    &quot;CSS&quot;: 64,
+    &quot;JavaScript&quot;: 128
+    }
+
+def _main_function ():
+    _get_skills(skills_dict)
+    _skill_comparison()
+    # Adds all of the values  of the keys that user entered
+    print(f&quot;Your Coding Skill Score is: {sum(new_dict.values())}&quot;)
+    # Displays the keys and values that the user did not enter
+    print(f&quot;Here are skills that you may want to learn and how much they will improve your score: {shared_items}&quot;)
+    
+_main_function()
+</div></code></pre>
+<p> </p>
+<p> </p>
+<h2 id="works-cited">Works Cited</h2>
+<hr>
+<p><strong>Question 1:</strong></p>
+<p>Techterms.com. 2022. Markup Language Definition. [online] Available at: <a href="https://techterms.com/definition/markup_language">https://techterms.com/definition/markup_language</a> [Accessed 3 May 2022].</p>
+<p><strong>Question 2:</strong></p>
+<p>Techterms.com. 2022. Markup Language Definition. [online] Available at: <a href="https://techterms.com/definition/markup_language">https://techterms.com/definition/markup_language</a> [Accessed 3 May 2022].</p>
+<p>www.kaspersky.com. 2022. What is an IP Address – Definition and Explanation. [online] Available at: <a href="https://www.kaspersky.com/resource-center/definitions/what-is-an-ip-address">https://www.kaspersky.com/resource-center/definitions/what-is-an-ip-address</a> [Accessed 3 July 2022].</p>
+<p>Guru99. 2022. IPv4 vs IPv6: What is the Difference Between IPv4 and IPv6?. [online] Available at: <a href="https://www.guru99.com/difference-ipv4-vs-ipv6.html">https://www.guru99.com/difference-ipv4-vs-ipv6.html</a> [Accessed 3 June 2022].</p>
+<p>GeeksforGeeks. 2022. Difference between Static and Dynamic Routing - GeeksforGeeks. [online] Available at: <a href="https://www.geeksforgeeks.org/difference-between-static-and-dynamic-routing/">https://www.geeksforgeeks.org/difference-between-static-and-dynamic-routing/</a> [Accessed 10 June 2022].</p>
+<p><strong>Question 3:</strong></p>
+<p>Cloudflare. 2022. Whats is HTTPS [online] Available at: <a href="https://www.cloudflare.com/en-au/learning/ssl/what-is-https/">https://www.cloudflare.com/en-au/learning/ssl/what-is-https/</a> [Accessed 11 June 2022].</p>
+<p>Cloudflare. 2022. What is TLS (Transport Layer Security)?. [online] Available at: <a href="https://www.cloudflare.com/en-au/learning/ssl/transport-layer-security-tls/">https://www.cloudflare.com/en-au/learning/ssl/transport-layer-security-tls/</a> [Accessed 3 July 2022].</p>
+<p>Mozilla. 2022. What is a web browser?. [online] Available at: <a href="https://www.mozilla.org/en-US/firefox/browsers/what-is-a-browser/">https://www.mozilla.org/en-US/firefox/browsers/what-is-a-browser/</a> [Accessed 28 June 2022].</p>
+<p>Developer.mozilla.org. 2022. Common questions - Learn web development | MDN. [online] Available at: <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/">https://developer.mozilla.org/en-US/docs/Learn/Common_questions/</a> [Accessed 3 July 2022].</p>
+<p><strong>Question 4:</strong></p>
+<p>Corporate Finance Institute. 2022. Python Data Structures. [online] Available at: <a href="https://corporatefinanceinstitute.com/resources/knowledge/other/python-data-structures/">https://corporatefinanceinstitute.com/resources/knowledge/other/python-data-structures/</a> [Accessed 3 July 2022].</p>
+<p>GeeksforGeeks. 2022. Python Data Structures - GeeksforGeeks. [online] Available at: <a href="https://www.geeksforgeeks.org/python-data-structures/">https://www.geeksforgeeks.org/python-data-structures/</a> [Accessed 28 June 2022].</p>
+<p><strong>Question 5:</strong></p>
+<p>Programiz.com. 2022. Interpreter Vs Compiler : Differences Between Interpreter and Compiler. [online] Available at: <a href="https://www.programiz.com/article/difference-compiler-interpreter">https://www.programiz.com/article/difference-compiler-interpreter</a> [Accessed 9 June 2022].</p>
+<p>Guru99. 2022. Compiler Vs. Interpreter: What’s the Difference?. [online] Available at: <a href="https://www.guru99.com/difference-compiler-vs-interpreter.html">https://www.guru99.com/difference-compiler-vs-interpreter.html</a> [Accessed 26 June 2022].</p>
+<p><strong>Question 6:</strong></p>
+<p>Data Flair. 2022. Pros and Cons of JavaScript – Weigh them and Choose wisely!. [online] Available at: <a href="https://data-flair.training/blogs/advantages-disadvantages-javascript/">https://data-flair.training/blogs/advantages-disadvantages-javascript/</a> [Accessed 3 July 2022].</p>
+<p>freeCodeCamp.org. (2019). The Advantages and Disadvantages of JavaScript. [online] Available at: https://www.freecodecamp.org/news/the-advantages-and-disadvantages-of-javascript/.</p>
+<p><strong>Question 7:</strong></p>
+<p>IP Australia (2019). IP Australia |. [online] Ipaustralia.gov.au. Available at: https://www.ipaustralia.gov.au/.</p>
+<p>Australian Government (2012). Copyright Act 1968. [online] Legislation.gov.au. Available at: https://www.legislation.gov.au/Details/C2017C00180.</p>
+<p>‌Legislation.gov.au. (2010). Competition and Consumer Act 2010. [online] Available at: https://www.legislation.gov.au/Details/C2013C00620/Html/Volume_3#_Toc368657554.</p>
+<p>‌Australian Competition and Consumer Commission (2014). Advertising and selling guide - Misleading or deceptive conduct. [online] Australian Competition and Consumer Commission. Available at: https://www.accc.gov.au/publications/advertising-selling/advertising-and-selling-guide/avoid-misleading-or-deceptive-claims-or-conduct/misleading-or-deceptive-conduct.</p>
+<p>Commission, A.C. and C. (2013). Full Federal Court orders Optus to pay $3.6 million penalty. [online] Australian Competition and Consumer Commission. Available at: https://www.accc.gov.au/media-release/full-federal-court-orders-optus-to-pay-36-million-penalty.</p>
+<p>‌Austlii.edu.au. (2012). Singtel Optus Pty Ltd v Australian Competition and Consumer Commission [2012] FCAFC 20 (7 March 2012). [online] Available at: http://www.austlii.edu.au/cgi-bin/sinodisp/au/cases/cth/FCAFC/2012/20.html?stem=0&amp;synonyms=0&amp;query=full%20federal%20court%20optus%20commission%202012.</p>
+<p>‌Commission, A.C. and C. (2013). Optus’ ‘THINK BIGGER’ internet plans declared ‘tricky’. [online] Australian Competition and Consumer Commission. Available at: https://www.accc.gov.au/media-release/optus-think-bigger-internet-plans-declared-tricky [Accessed 20 Jun. 2022].</p>
+<p>‌
+‌</p>
+<p><strong>Question 8:</strong></p>
+<p>Educative: Interactive Courses for Software Developers. (n.d.). What are control flow statements in Python? [online] Available at: https://www.educative.io/answers/what-are-control-flow-statements-in-python.</p>
+<p>PYnative. (2021). Python Control Flow Statements and Loops. [online] Available at: https://pynative.com/python-control-flow-statements/ [Accessed 328 Jun. 2022].</p>
+<p><strong>Question 9:</strong></p>
+<p>Mathew, S.T. (2021). Python Fundamentals for Everybody — Type Conversion vs Type Coercion. [online] Analytics Vidhya. Available at: https://medium.com/analytics-vidhya/python-fundamentals-for-everybody-type-conversion-vs-type-coercion-34234e99c9c4#:~:text=The%20automatic%20type%20conversion%20from.</p>
+<p>‌
+developer.mozilla.org. (n.d.). Type coercion - MDN Web Docs Glossary: Definitions of Web-related terms | MDN. [online] Available at: https://developer.mozilla.org/en-US/docs/Glossary/Type_coercion.</p>
+<p>‌
+GeeksforGeeks. (2016). Type Conversion in Python. [online] Available at: https://www.geeksforgeeks.org/type-conversion-python/.</p>
+<p><strong>Question 10:</strong></p>
+<p>www.w3schools.com. (n.d.). Python Data Types. [online] Available at: https://www.w3schools.com/python/python_datatypes.asp.</p>
+<p>‌
+Choudhury, A. (2022). What Are Data Types and Why Are They Important? [online] Amplitude. Available at: https://amplitude.com/blog/data-types.</p>
+<p>‌</p>
+
+</body>
+</html>
